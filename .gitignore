@@ -218,3 +218,13 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# --- ARMS EvidOS ---
+# 개인 환경변수 (API 키). .env.example만 커밋한다
+.env.*
+!.env.example
+# 실행 결과 기록 (재현용, 소스 아님)
+runs/
+# Claude Code 개인 설정·메모 (팀 공용은 .claude/settings.json)
+.claude/settings.local.json
+CLAUDE.local.md

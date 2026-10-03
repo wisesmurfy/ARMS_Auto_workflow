@@ -1,0 +1,27 @@
+[project]
+name = "evidos"
+version = "0.1.0"
+description = "ARMS EvidOS: topic -> 3-Part outline options -> human selection (LLM workflow)"
+requires-python = ">=3.12"
+dependencies = [
+    "openai>=1.40",        # LLM 호출 (구조화 출력 지원 버전 이상)
+    "pydantic>=2.7",       # 데이터 모양(스키마) 정의·검사
+    "python-dotenv>=1.0",  # .env에서 API 키 읽기
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",         # 코드 테스트
+    "ruff>=0.5",           # 린트 + 포맷
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = ["docs/design"]  # 승인된 설계 스냅샷은 수정 금지 (md 안 코드 블록 포맷 방지)
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]  # 기본 오류 · import 정렬 · 최신 문법 · 흔한 버그
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
