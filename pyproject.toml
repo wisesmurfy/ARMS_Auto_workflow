@@ -18,6 +18,7 @@ dev = [
 [tool.ruff]
 line-length = 100
 target-version = "py312"
+extend-exclude = ["docs/design"]  # 승인된 설계 스냅샷은 수정 금지 (md 안 코드 블록 포맷 방지)
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]  # 기본 오류 · import 정렬 · 최신 문법 · 흔한 버그
