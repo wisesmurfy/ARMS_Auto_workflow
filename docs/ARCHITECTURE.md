@@ -1,0 +1,75 @@
+# ARCHITECTURE
+
+ARMS EvidOS는 **Workflow**다. 순서는 코드(`pipeline.py`)가 정하고, LLM은 각 단계의 칸만 채운다 ([ADR-0001](decisions/0001-workflow-not-agent.md)).
+
+## 모듈 A~D
+
+```
+ [Topic]
+    │
+    ▼
+ ┌─────────────────────────────────────────────┐
+ │ A. Question structuring & option selection  │  ✅ v1
+ │    A1 PICO analysis → A2 3 options          │
+ │    → (A2.5 evidence grading, planned)       │
+ │    → A3 human selection                     │
+ └─────────────────────────────────────────────┘
+    │  selected_option.json
+    ▼
+ ┌─────────────────────────────────────────────┐
+ │ B. PubMed search (E-utilities API)          │  🔜
+ └─────────────────────────────────────────────┘
+    │  records.json
+    ▼
+ ┌─────────────────────────────────────────────┐
+ │ C. Study selection                          │  🔜
+ │    Relevance → Evidence level → Recency     │
+ │    → Journal quality                        │
+ └─────────────────────────────────────────────┘
+    │  selected_studies.json
+    ▼
+ ┌─────────────────────────────────────────────┐
+ │ D. Summaries & manuscript draft (Word)      │  🔜
+ └─────────────────────────────────────────────┘
+```
+
+| 모듈 | 하는 일 | 넣는 것 | 나오는 것 | 상태 |
+|---|---|---|---|---|
+| A | 주제를 P·E/I·C·O로 분해하고 3-Part 구성안 3개 중 사람이 1개 선택 | 주제 문장 | `selected_option.json` | v1 개발 중 |
+| B | 선택된 구성안으로 PubMed 검색 | `selected_option.json` | `records.json` | 예정 |
+| C | 관련성 → 근거 수준 → 최신성 → 저널 품질 순으로 선별 | `records.json` | `selected_studies.json` | 예정 |
+| D | 문헌 요약과 원고 초안(Word) 작성 | `selected_studies.json` | 원고 초안 | 예정 |
+
+B·C·D 폴더는 구현할 때 만든다. 빈 폴더를 미리 두지 않는다.
+
+## 모듈 A 데이터 흐름
+
+```
+topic: str
+  │  [A1] module_a/analyze_topic.py   + prompts/a1_analyze_topic.md
+  ▼
+TopicFrame  {P, EI, C, O, core_question, provisional_message, audience}
+  │  [A2] module_a/build_options.py   + prompts/a2_build_options.md
+  ▼
+list[Option] (3개)   각 Option = Part 1·2·3
+  │  [A2.5] 근거 등급화 자리 — v1은 grade: None (ADR-0002)
+  ▼
+  │  [A3] module_a/select_option.py   사람이 번호 선택 (Gate)
+  ▼
+Option  →  runs/<시각>/*.json
+```
+
+- 스키마(`TopicFrame`, `Option`, `Part`)의 정확한 필드는 `src/evidos/schemas.py`가 단일 출처다. 이 그림은 Step 2에서 코드에 맞춰 갱신한다.
+- 의학 규칙(PICO, Part 역할)은 [guideline-summary.md](guideline-summary.md)가 단일 출처다.
+
+## 파일 역할
+
+| 파일 | 역할 |
+|---|---|
+| `pipeline.py` | A1 → A2 → (A2.5) → A3 순서만 담당 |
+| `llm.py` | Claude API 호출을 모은 유일한 곳. 구조화 출력으로 Pydantic 모델을 받는다 ([ADR-0004](decisions/0004-claude-as-llm-provider.md)) |
+| `schemas.py` | 단계 사이를 오가는 데이터 모양 |
+| `prompts/*.md` | 앱 안의 LLM이 읽는 지시문. 코드와 분리 |
+| `cli.py` | 실행 입구: `uv run evidos "주제"` |
+| `tests/` | API 호출 없는 코드 테스트 (무료) |
+| `evals/` | 실제 API를 부르는 품질 평가 (유료, 프롬프트 변경 시) |
