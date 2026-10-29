@@ -3,7 +3,7 @@ paths:
   - "evals/**"
 ---
 
-# Eval 규칙 (실제 OpenAI 호출, 비용 발생)
+# Eval 규칙 (실제 Claude API 호출, 비용 발생)
 
 - 케이스는 YAML 파일 1개 = 주제 1개 (`evals/cases/*.yaml`)
 - 정답지는 출처를 적는다 (예: 가이드라인 3~4쪽 예시)

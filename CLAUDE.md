@@ -10,7 +10,7 @@
 
 ## Architecture rules
 - 순서는 `pipeline.py`가 정한다. LLM이 다음 단계를 고르게 만들지 말 것 (docs/decisions/0001)
-- LLM(OpenAI API) 호출은 `llm.py`에서만. 출력은 항상 `schemas.py`의 Pydantic 모델로 받는다
+- LLM(Claude API) 호출은 `llm.py`에서만. 출력은 항상 `schemas.py`의 Pydantic 모델로 받는다
 - 의학 도메인 지시는 `src/evidos/prompts/`에만 쓴다. 파이썬 코드에 프롬프트 문자열 금지
 - 의학 규칙의 단일 출처: docs/guideline-summary.md
 

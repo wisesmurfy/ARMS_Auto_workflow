@@ -3,7 +3,7 @@ paths:
   - "src/evidos/prompts/**"
 ---
 
-# 프롬프트 규칙 (앱 안의 OpenAI가 읽는 파일)
+# 프롬프트 규칙 (앱 안의 LLM(Claude API)이 읽는 파일)
 
 - 구조: `<role>`, `<guideline>`, `<input>`, `<output_rules>` XML 태그로 구획한다
 - 의학 규칙은 docs/guideline-summary.md에서 가져오고 항 번호를 적는다 (예: 가이드라인 2항)
