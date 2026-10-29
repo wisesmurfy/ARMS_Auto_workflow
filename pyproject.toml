@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "ARMS EvidOS: topic -> 3-Part outline options -> human selection (LLM workflow)"
 requires-python = ">=3.12"
 dependencies = [
-    "openai>=1.40",        # LLM 호출 (구조화 출력 지원 버전 이상)
+    "anthropic>=2.3.0",    # LLM 호출: Claude API (ADR-0004)
     "pydantic>=2.7",       # 데이터 모양(스키마) 정의·검사
     "python-dotenv>=1.0",  # .env에서 API 키 읽기
 ]
