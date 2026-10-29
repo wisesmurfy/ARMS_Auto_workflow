@@ -31,7 +31,7 @@
 - 주석: 파일 지도 + 입출력 + 데이터 모양. 상세: .claude/rules/python.md
 
 ## Review (상세: .claude/rules/review.md)
-- 리뷰 Unit(데이터 변환 1개, ~150줄) 하나를 만들면 멈추고 리뷰 카드를 준다. 사용자 "OK" 전에는 커밋·다음 Unit 금지
+- 리뷰 Unit(데이터 변환 1개, ~150줄) 하나를 만들면 멈추고 리뷰 카드를 준다(🟡·🟢 묶음 여부는 review.md의 목줄 레벨). 사용자 "OK" 전에는 커밋·다음 Unit 금지
 - 비판에는 찬반 근거를 함께 제시. 결정은 사용자. 목줄 레벨은 사용자만 변경
 - 카드 8번: 이번 Unit에 처음 나온 문법 최대 2개(docs/learning/python-glossary.md 확인 후). 승인 조건 아님
 
