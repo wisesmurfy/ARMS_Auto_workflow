@@ -54,9 +54,9 @@ TopicFrame  {P, EI, C, O, core_question, provisional_message, audience}
 list[Option] (3개)   각 Option = Part 1·2·3
   │  [A2.5] 근거 등급화 자리 — v1은 grade: None (ADR-0002)
   ▼
-  │  [A3] module_a/select_option.py   사람이 번호 선택 (Gate)
+  │  [A3] 웹 화면에서 사람이 1개 선택 (Gate, ADR-0005)
   ▼
-Option  →  runs/<시각>/*.json
+Option  →  selected_option.json (브라우저 다운로드)
 ```
 
 - 스키마(`TopicFrame`, `Option`, `Part`)의 정확한 필드는 `src/evidos/schemas.py`가 단일 출처다. 이 그림은 Step 2에서 코드에 맞춰 갱신한다.
@@ -70,6 +70,7 @@ Option  →  runs/<시각>/*.json
 | `llm.py` | Claude API 호출을 모은 유일한 곳. 구조화 출력으로 Pydantic 모델을 받는다 ([ADR-0004](decisions/0004-claude-as-llm-provider.md)) |
 | `schemas.py` | 단계 사이를 오가는 데이터 모양 |
 | `prompts/*.md` | 앱 안의 LLM이 읽는 지시문. 코드와 분리 |
-| `cli.py` | 실행 입구: `uv run evidos "주제"` |
+| `api.py` | 웹 입구(FastAPI): 주제를 받아 pipeline을 부르고 JSON으로 돌려준다 (Step 5, [ADR-0005](decisions/0005-web-ui-on-vercel.md)) |
+| `web/` | 화면(HTML·CSS·JS): 공통 분석과 구성안 3개를 보여 주고 선택받는다 (Step 6) |
 | `tests/` | API 호출 없는 코드 테스트 (무료) |
 | `evals/` | 실제 API를 부르는 품질 평가 (유료, 프롬프트 변경 시) |

@@ -3,7 +3,7 @@
 
 ## Commands
 - 설치: `uv sync`
-- 실행: `uv run evidos "주제"`
+- 실행: 웹 서버 실행 명령은 Step 5에서 확정 (웹 = FastAPI + HTML, Vercel 배포. docs/decisions/0005)
 - 테스트(무료): `uv run pytest`
 - 평가(유료, 프롬프트 변경 시만): `uv run python -m evals.run`
 - 린트: `uv run ruff check . && uv run ruff format .`
@@ -15,7 +15,7 @@
 - 의학 규칙의 단일 출처: docs/guideline-summary.md
 
 ## Scope (v1)
-- 구현 중: 모듈 A (A1 분석, A2 구성안, A3 선택)
+- 구현 중: 모듈 A (A1 분석, A2 구성안, A3 선택) + 웹 화면 (ADR-0005)
 - 하지 않음: Embase, A/B/C 등급화(A2.5 자리만 유지: `grade: None`)
 
 ## Definition of Done (코드를 바꾸면 같은 작업 안에서 문서도 갱신)
