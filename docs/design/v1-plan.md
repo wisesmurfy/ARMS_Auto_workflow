@@ -518,12 +518,12 @@ save_run(frame, options, chosen)        #      → runs/<시각>/*.json
 
 #### 3-4-2. Credits (영어 / 한국어)
 - EN:
-  - **Planning & methodology**: ARMS Academic Team. The *3-Part Structuring Guideline* was authored by Seongwoo Lee (Academic Team Lead, 14th cohort) and Junmo Kim (Academic Committee).
+  - **Planning & methodology**: ARMS Academic Team (*3-Part Structuring Guideline*).
   - **Architecture design & development**: solo project by [@wisesmurfy](https://github.com/wisesmurfy), a member of the ARMS Academic Team.
 - KO:
-  - **기획·방법론**: ARMS 학술팀. 「3-Part 구조화 가이드라인」 작성: 14기 학술팀장 이성우, 학술위원 김준모.
+  - **기획·방법론**: ARMS 학술팀 (「3-Part 구조화 가이드라인」).
   - **아키텍처 설계 및 개발**: ARMS 학술팀원 [@wisesmurfy](https://github.com/wisesmurfy) 단독 개발.
-- 가이드라인 저자 실명 표기는 Public 전환 전에 당사자 동의를 확인한다.
+- 가이드라인 저자 실명은 표기하지 않는다 (2026-10-29 사용자 결정으로 수정).
 
 ### 3-5. `src/evidos/prompts/a1_analyze_topic.md` 형태
 ```
