@@ -8,3 +8,5 @@
 | 2 | `str \| None` | "글자 또는 비어 있음". 없어도 되는 칸에 쓴다 | schemas.py:46 | 0 |
 | 3 | `try:` … `except 오류종류:` | 실패할 수 있는 일을 시도하고, 그 오류가 나면 멈추지 않고 except 아래를 실행한다 | llm.py:89 | 0 |
 | 4 | `def f[T: BaseModel](x: type[T]) -> T` | "넣은 모양 그대로 돌려준다"는 표시. TopicFrame을 넣으면 TopicFrame이 나온다 | llm.py:52 | 0 |
+| 5 | `@pytest.fixture` (함수 위 `@이름`) | 아래 함수에 기능을 덧씌운다. fixture는 "테스트가 인자 이름으로 달라고 하면 pytest가 준비해 넘겨주는 도구" | tests/test_llm.py:60 | 0 |
+| 6 | `def f(**request):` | 이름 붙은 인자(`model=...`, `max_tokens=...`)를 몽땅 사전(dict) 하나로 받는다 | tests/test_llm.py:55 | 0 |
