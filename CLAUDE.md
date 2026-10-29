@@ -3,7 +3,7 @@
 
 ## Commands
 - 설치: `uv sync`
-- 실행: `uv run evidos "주제"`
+- 실행: 웹 서버 실행 명령은 Step 5에서 확정 (웹 = FastAPI + HTML, Vercel 배포. docs/decisions/0005)
 - 테스트(무료): `uv run pytest`
 - 평가(유료, 프롬프트 변경 시만): `uv run python -m evals.run`
 - 린트: `uv run ruff check . && uv run ruff format .`
@@ -15,7 +15,7 @@
 - 의학 규칙의 단일 출처: docs/guideline-summary.md
 
 ## Scope (v1)
-- 구현 중: 모듈 A (A1 분석, A2 구성안, A3 선택)
+- 구현 중: 모듈 A (A1 분석, A2 구성안, A3 선택) + 웹 화면 (ADR-0005)
 - 하지 않음: Embase, A/B/C 등급화(A2.5 자리만 유지: `grade: None`)
 
 ## Definition of Done (코드를 바꾸면 같은 작업 안에서 문서도 갱신)
@@ -31,7 +31,7 @@
 - 주석: 파일 지도 + 입출력 + 데이터 모양. 상세: .claude/rules/python.md
 
 ## Review (상세: .claude/rules/review.md)
-- 리뷰 Unit(데이터 변환 1개, ~150줄) 하나를 만들면 멈추고 리뷰 카드를 준다. 사용자 "OK" 전에는 커밋·다음 Unit 금지
+- 리뷰 Unit(데이터 변환 1개, ~150줄) 하나를 만들면 멈추고 리뷰 카드를 준다(🟡·🟢 묶음 여부는 review.md의 목줄 레벨). 사용자 "OK" 전에는 커밋·다음 Unit 금지
 - 비판에는 찬반 근거를 함께 제시. 결정은 사용자. 목줄 레벨은 사용자만 변경
 - 카드 8번: 이번 Unit에 처음 나온 문법 최대 2개(docs/learning/python-glossary.md 확인 후). 승인 조건 아님
 
