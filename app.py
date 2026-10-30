@@ -11,7 +11,7 @@ import logging
 import sys
 from pathlib import Path
 
-# 배포 환경이 이 프로젝트를 패키지로 설치하지 않아도 src/evidos를 찾게 한다
+# 파이썬이 우리 코드(src/evidos)를 찾을 수 있게 src 폴더를 찾아볼 곳에 추가한다
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 logging.basicConfig(level=logging.INFO)  # 단계별 걸린 시간(pipeline.py)을 Vercel 로그에 남긴다
 
