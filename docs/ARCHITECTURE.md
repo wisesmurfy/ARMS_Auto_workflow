@@ -73,6 +73,7 @@ Option  →  selected_option.json (브라우저 다운로드)
 | `pipeline.py` | A1 → A2 → (A2.5) → A3 순서만 담당 |
 | `llm.py` | Claude API 호출을 모은 유일한 곳. 구조화 출력으로 Pydantic 모델을 받는다 ([ADR-0004](decisions/0004-claude-as-llm-provider.md)) |
 | `schemas.py` | 단계 사이를 오가는 데이터 모양 |
+| `module_a/*.py` | 단계별 변환 1개씩: `analyze_topic.py`(A1, Step 3), `build_options.py`(A2, Step 4) |
 | `prompts/*.md` | 앱 안의 LLM이 읽는 지시문. 코드와 분리 |
 | `api.py` | 웹 입구(FastAPI): 주제를 받아 pipeline을 부르고 JSON으로 돌려준다 (Step 5, [ADR-0005](decisions/0005-web-ui-on-vercel.md)) |
 | `web/` | 화면(HTML·CSS·JS): 공통 분석과 구성안 3개를 보여 주고 선택받는다 (Step 6) |
