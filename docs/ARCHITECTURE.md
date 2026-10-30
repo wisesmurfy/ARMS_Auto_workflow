@@ -75,7 +75,7 @@ Option  →  selected_option.json (브라우저 다운로드)
 | `schemas.py` | 단계 사이를 오가는 데이터 모양 |
 | `module_a/*.py` | 단계별 변환 1개씩: `analyze_topic.py`(A1, Step 3), `build_options.py`(A2, Step 4) |
 | `prompts/*.md` | 앱 안의 LLM이 읽는 지시문. 코드와 분리 |
-| `api.py` | 웹 입구(FastAPI): 주제를 받아 pipeline을 부르고 JSON으로 돌려준다 (Step 5, [ADR-0005](decisions/0005-web-ui-on-vercel.md)) |
+| `api.py` | 웹 입구(FastAPI): 비밀번호 확인 후 pipeline을 부르고, A1·A2 결과를 나오는 대로 한 줄씩(NDJSON) 흘려보낸다 (Step 5, [ADR-0005](decisions/0005-web-ui-on-vercel.md)) |
 | `web/` | 화면(HTML·CSS·JS): 공통 분석과 구성안 3개를 보여 주고 선택받는다 (Step 6) |
 | `tests/` | API 호출 없는 코드 테스트 (무료) |
 | `evals/` | 실제 API를 부르는 품질 평가 (유료, 프롬프트 변경 시) |

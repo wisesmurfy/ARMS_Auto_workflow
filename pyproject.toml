@@ -5,6 +5,7 @@ description = "ARMS EvidOS: topic -> 3-Part outline options -> human selection (
 requires-python = ">=3.12"
 dependencies = [
     "anthropic>=2.3.0",    # LLM 호출: Claude API (ADR-0004)
+    "fastapi>=0.143.3,<0.144",  # 웹 입구 api.py (ADR-0005). 2주 이상 된 버전대로 고정
     "pydantic>=2.7",       # 데이터 모양(스키마) 정의·검사
     "python-dotenv>=1.0",  # .env에서 API 키 읽기
 ]
@@ -17,6 +18,7 @@ build-backend = "uv_build"
 dev = [
     "pytest>=8.0",         # 코드 테스트
     "ruff>=0.5",           # 린트 + 포맷
+    "uvicorn>=0.54",       # 내 컴퓨터에서 웹 서버 띄우기 (배포에는 안 씀)
 ]
 
 [tool.ruff]
