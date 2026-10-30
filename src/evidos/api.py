@@ -1,6 +1,7 @@
 """
 api.py — 웹 입구(FastAPI). 화면과 Claude 사이에서 API 키를 숨긴 채 pipeline을 대신 부른다 (ADR-0005)
 
+  브라우저 ── GET /            → web/ 화면 파일 (index.html, style.css, app.js)
   브라우저 ── POST /api/propose  {"topic": "..."}  + 헤더 X-Access-Password
      │  ① 비밀번호 확인 (틀리면 401, 서버에 비밀번호가 설정 안 됐으면 503)
      ▼
@@ -18,11 +19,13 @@ import logging
 import os
 import secrets
 from collections.abc import Iterator
+from pathlib import Path
 
 import anthropic
 from dotenv import load_dotenv
 from fastapi import FastAPI, Header, HTTPException
 from fastapi.responses import StreamingResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from evidos import llm
@@ -32,6 +35,7 @@ from evidos.schemas import TopicFrame
 load_dotenv()  # .env → 환경변수 (EVIDOS_PASSWORD, ANTHROPIC_API_KEY)
 logger = logging.getLogger(__name__)
 app = FastAPI(title="ARMS EvidOS")
+WEB_DIR = Path(__file__).parent / "web"
 
 
 class TopicRequest(BaseModel):
@@ -80,3 +84,7 @@ def propose_endpoint(
     """주제를 받아 A1 → A2 결과를 차례로 흘려보낸다."""
     _check_password(x_access_password)
     return StreamingResponse(_stream(request.topic), media_type="application/x-ndjson")
+
+
+# 화면 파일. /api/... 주소가 먼저 잡히도록 맨 마지막에 붙인다
+app.mount("/", StaticFiles(directory=WEB_DIR, html=True), name="web")

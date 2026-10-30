@@ -59,7 +59,7 @@ OptionSet   {options: Option ×1~3, recommended, recommendation_reason, shortfal
   ▼
   │  [A3] 웹 화면에서 사람이 1개 선택 (Gate, ADR-0005)
   ▼
-Option  →  selected_option.json (브라우저 다운로드)
+Option  →  selected_option.json {topic, frame, option, selected_at} (브라우저 다운로드, 서버 저장 없음)
 ```
 
 - 스키마의 정확한 필드는 `src/evidos/schemas.py`가 단일 출처다. `?`는 비어 있을 수 있는 칸이다.
@@ -76,6 +76,6 @@ Option  →  selected_option.json (브라우저 다운로드)
 | `module_a/*.py` | 단계별 변환 1개씩: `analyze_topic.py`(A1, Step 3), `build_options.py`(A2, Step 4) |
 | `prompts/*.md` | 앱 안의 LLM이 읽는 지시문. 코드와 분리 |
 | `api.py` | 웹 입구(FastAPI): 비밀번호 확인 후 pipeline을 부르고, A1·A2 결과를 나오는 대로 한 줄씩(NDJSON) 흘려보낸다 (Step 5, [ADR-0005](decisions/0005-web-ui-on-vercel.md)) |
-| `web/` | 화면(HTML·CSS·JS): 공통 분석과 구성안 3개를 보여 주고 선택받는다 (Step 6) |
+| `web/` | 화면(HTML·CSS·JS): 공통 분석과 구성안 3개를 보여 주고 선택받는다. api.py가 `/`에서 내보낸다 (Step 6) |
 | `tests/` | API 호출 없는 코드 테스트 (무료) |
 | `evals/` | 실제 API를 부르는 품질 평가 (유료, 프롬프트 변경 시) |

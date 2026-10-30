@@ -1,0 +1,60 @@
+<!doctype html>
+<!--
+  index.html — 모듈 A 화면의 뼈대 (ADR-0005). 내용은 app.js가 채운다
+    ① 입력: 비밀번호 · 주제 → [구성안 만들기]
+    ② 진행: A1 주제 분석 중 → A2 구성안 만드는 중 (경과 시간)
+    ③ 공통 분석(A1): P·E/I·C·O 카드 + 핵심 질문·잠정 메시지·독자·통념
+    ④ 구성안(A2): 안 1~3 카드(Part 1→2→3) + 추천 이유 → [이 안 선택] → selected_option.json 내려받기 (A3)
+-->
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ARMS EvidOS</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <h1>ARMS EvidOS</h1>
+      <p>주제를 넣으면 Part 1·2·3으로 된 구성안을 최대 3개 설계합니다</p>
+    </header>
+
+    <main>
+      <form id="topic-form" class="panel">
+        <label for="password">접속 비밀번호</label>
+        <input id="password" type="password" autocomplete="current-password" required />
+
+        <label for="topic">학술 주제</label>
+        <textarea id="topic" rows="2" maxlength="500" required
+          placeholder="예) 노화로 인한 성호르몬 변화와 심혈관 대사질환"></textarea>
+
+        <button id="submit" type="submit">구성안 만들기</button>
+      </form>
+
+      <section id="progress" class="panel" hidden>
+        <ol class="steps">
+          <li id="step-a1">① 주제 분석 (약 10초)</li>
+          <li id="step-a2">② 구성안 설계 (약 1분)</li>
+        </ol>
+        <p id="elapsed" class="muted"></p>
+      </section>
+
+      <p id="error" class="error" role="alert" hidden></p>
+
+      <section id="frame" hidden>
+        <h2>공통 분석</h2>
+        <div id="pico" class="pico-grid"></div>
+        <dl id="frame-details" class="details"></dl>
+      </section>
+
+      <section id="options" hidden>
+        <h2>구성안</h2>
+        <p id="recommendation" class="note"></p>
+        <p id="shortfall" class="note warn" hidden></p>
+        <div id="option-list" class="option-grid"></div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
