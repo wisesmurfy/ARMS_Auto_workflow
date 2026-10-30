@@ -12,3 +12,5 @@
 | 6 | `def f(**request):` | 이름 붙은 인자(`model=...`, `max_tokens=...`)를 몽땅 사전(dict) 하나로 받는다 | tests/test_llm.py:55 | 0 |
 | 7 | `Path(__file__).parent / "prompts"` | 파일 경로 다루기. `__file__`은 지금 파일 위치, `.parent`는 한 단계 위 폴더, `/`는 경로 잇기 | module_a/analyze_topic.py:21 | 0 |
 | 8 | `raise 오류종류("메시지")` | 일부러 오류를 내서 실행을 멈추고 부른 쪽에 알린다 (#3 `except`로 받을 수 있다) | module_a/analyze_topic.py:38 | 0 |
+| 9 | `f"- {이름}: {값}"` | f-문자열. 따옴표 앞 `f`가 있으면 `{ }` 안의 변수 값이 글자 속에 채워진다 | module_a/build_options.py:30 | 0 |
+| 10 | `for 키, 값 in 사전.items():` | 사전(dict)의 (이름, 내용) 쌍을 하나씩 꺼내 두 변수에 나눠 담으며 반복한다 | module_a/build_options.py:27 | 0 |
