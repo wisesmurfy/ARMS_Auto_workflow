@@ -10,3 +10,5 @@
 | 4 | `def f[T: BaseModel](x: type[T]) -> T` | "넣은 모양 그대로 돌려준다"는 표시. TopicFrame을 넣으면 TopicFrame이 나온다 | llm.py:52 | 0 |
 | 5 | `@pytest.fixture` (함수 위 `@이름`) | 아래 함수에 기능을 덧씌운다. fixture는 "테스트가 인자 이름으로 달라고 하면 pytest가 준비해 넘겨주는 도구" | tests/test_llm.py:60 | 0 |
 | 6 | `def f(**request):` | 이름 붙은 인자(`model=...`, `max_tokens=...`)를 몽땅 사전(dict) 하나로 받는다 | tests/test_llm.py:55 | 0 |
+| 7 | `Path(__file__).parent / "prompts"` | 파일 경로 다루기. `__file__`은 지금 파일 위치, `.parent`는 한 단계 위 폴더, `/`는 경로 잇기 | module_a/analyze_topic.py:21 | 0 |
+| 8 | `raise 오류종류("메시지")` | 일부러 오류를 내서 실행을 멈추고 부른 쪽에 알린다 (#3 `except`로 받을 수 있다) | module_a/analyze_topic.py:38 | 0 |
