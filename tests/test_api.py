@@ -95,3 +95,17 @@ def test_failure_becomes_short_error_line(client, monkeypatch, error, expected):
     assert [line["step"] for line in lines] == ["frame", "error"]
     assert expected in lines[1]["message"]
     assert "내부 상세" not in lines[1]["message"] and "sk-ant" not in lines[1]["message"]
+
+
+def test_web_page_is_served(client):
+    page = client.get("/")
+
+    assert page.status_code == 200
+    assert "ARMS EvidOS" in page.text
+    assert client.get("/app.js").status_code == 200
+
+
+def test_web_script_never_uses_inner_html():
+    # Claude가 쓴 글이 HTML로 해석되면 글 속 <script>가 실행될 수 있다 (K22)
+    script = (api.WEB_DIR / "app.js").read_text(encoding="utf-8")
+    assert "innerHTML" not in script.replace("innerHTML 금지", "")
