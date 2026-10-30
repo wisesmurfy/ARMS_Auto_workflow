@@ -4,6 +4,7 @@
 ## Commands
 - 설치: `uv sync`
 - 로컬 웹 서버: `uv run uvicorn evidos.api:app --reload` (`.env`에 EVIDOS_PASSWORD 필요. 배포는 Vercel, docs/decisions/0005)
+- 배포: main에 merge하면 Vercel이 자동 배포 (입구: 맨 위 `app.py`, 환경변수는 Vercel 설정 화면)
 - 테스트(무료): `uv run pytest`
 - 평가(유료, 프롬프트 변경 시만): `uv run python -m evals.run`
 - 린트: `uv run ruff check . && uv run ruff format .`
