@@ -1,0 +1,29 @@
+[project]
+name = "{{패키지}}"
+version = "0.1.0"
+description = "{{한 줄 설명}}"
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.7",       # 데이터 모양(스키마) 정의·검사
+    "python-dotenv>=1.0",  # .env에서 API 키 읽기
+]
+
+[build-system]  # src/<패키지>를 패키지로 설치해 import가 되게 한다
+requires = ["uv_build>=0.12,<0.13"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",         # 코드 테스트
+    "ruff>=0.5",           # 린트 + 포맷
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]  # 기본 오류 · import 정렬 · 최신 문법 · 흔한 버그
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
